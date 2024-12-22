@@ -56,15 +56,15 @@ const Transaction = ({
   };
 
   return (
-    <div className="flex items-center justify-center mx-auto">
+    <div className="flex items-center justify-center w-full my-7  ">
       <form
-        className="flex flex-col gap-6 w-[464px] max-w-lg p-6 border border-[#4ef09d] rounded-3xl bg-[#222222] text-white"
+        className="flex flex-col gap-6 w-full p-6  rounded-3xl h-full  bg-[#222222] text-white justify-center "
         onSubmit={handlerTransaction}
       >
-        <div className="flex flex-col">
+        <div className="flex flex-col my-7 ">
           <label className="mb-2 text-sm">Choose a card:</label>
           <select
-            className="bg-[#333333] block w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+            className="bg-[#333333] block w-full px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
             value={selectCard}
             onChange={(e) => setSelectCard(Number(e.target.value))}
           >
@@ -78,7 +78,7 @@ const Transaction = ({
         <div className="flex flex-col">
           <label className="mb-2 text-sm">Enter CVV2:</label>
           <input
-            className="bg-[#333333] block w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+            className="bg-[#333333] block w-full px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
             type="text"
             value={inputCvv2}
             onChange={(e) => setInputCvv2(e.target.value)}
@@ -87,14 +87,14 @@ const Transaction = ({
         <div className="flex flex-col">
           <label className="mb-2 text-sm">Amount:</label>
           <input
-            className="bg-[#333333] block w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+            className="bg-[#333333] block w-full px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
         </div>
         <button
-          className="bg-[#4ef09d] text-[#333333] font-bold text-lg py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 hover:bg-[#3ec88b] transition-colors"
+          className="bg-[#4ef09d] text-[#333333] font-bold text-lg py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 hover:bg-[#3ec88b] transition-colors mt-6 w-2/3 mx-auto"
           type="submit"
         >
           Submit
