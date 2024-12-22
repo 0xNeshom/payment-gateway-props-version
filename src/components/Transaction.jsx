@@ -8,25 +8,32 @@ const Transaction = ({
 }) => {
   const [amount, setAmount] = useState("");
   const [inputCvv2, setInputCvv2] = useState("");
-  const [selectCard, setSelectCard] = useState(1);
+  const [selectCard, setSelectCard] = useState(0); 
 
   const handlerTransaction = (e) => {
     e.preventDefault();
+    const selectedCardIndex = Number(selectCard);
+    const transactionAmount = Number(amount);
 
-    const selectedCard = formData[selectCard];
+    if (selectedCardIndex < 0 || selectedCardIndex >= formData.length) {
+      showToast("error", "Invalid card selected");
+      return;
+    }
+
+    const selectedCard = formData[selectedCardIndex];
 
     if (inputCvv2.length < 3) {
       showToast("error", "CVV2 should be 3 or 4 digits");
     } else if (inputCvv2 !== selectedCard.cvv2) {
       showToast("error", "CVV2 is incorrect");
-    } else if (amount > selectedCard.balance) {
+    } else if (transactionAmount > selectedCard.balance) {
       showToast("error", "The amount is more than your balance");
     } else {
       const updatedFormData = formData.map((card, index) => {
-        if (index === selectCard) {
+        if (index === selectedCardIndex) {
           return {
             ...card,
-            balance: card.balance - amount,
+            balance: card.balance - transactionAmount,
           };
         }
         return card;
@@ -34,8 +41,8 @@ const Transaction = ({
 
       const transactionRecord = {
         id: Date.now(),
-        cardIndex: selectCard,
-        amount: amount,
+        cardIndex: selectedCardIndex,
+        amount: transactionAmount,
         date: new Date().toLocaleString(),
       };
 
@@ -45,8 +52,6 @@ const Transaction = ({
       showToast("success", "Transaction successful!");
       setAmount("");
       setInputCvv2("");
-      console.log( selectCard);
-      console.log( selectedCard);
     }
   };
 
@@ -61,7 +66,7 @@ const Transaction = ({
           <select
             className="bg-[#333333] block w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
             value={selectCard}
-            onChange={(e) => setSelectCard(e.target.value)}
+            onChange={(e) => setSelectCard(Number(e.target.value))}
           >
             {formData.map((card, index) => (
               <option key={index} value={index}>
