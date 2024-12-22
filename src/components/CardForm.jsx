@@ -71,7 +71,7 @@ const CardForm = ({
         <div className="flex flex-col">
           <label className="mb-2 text-sm">First Name & Last Name:</label>
           <input
-            maxLength={10}
+            
             className="bg-[#333333] w-full px-4 py-3 rounded-md  focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
             type="text"
             placeholder="Enter your Name"

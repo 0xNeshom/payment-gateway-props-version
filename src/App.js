@@ -21,59 +21,50 @@ function App() {
       cvv2: '123',
       month: '12',
     },
-    {
-      name: 'Jane Smith',
-      balance: '3000',
-      cardNumber: '5678567856785678',
-      cvv2: '456',
-      month: '11',
-    },
   ]);
   const [transactionHistory, setTransactionHistory] = useState([]);
 
-  console.log(formData);
 
   return (
     <div className='h-screen bg-[#1a1a1a] flex flex-row gap-9 '>
-        <SideBar />
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <CardForm
-                setName={setName}
-                setBalance={setBalance}
-                setCardNumber={setCardNumber}
-                setCvv2={setCvv2}
-                setMonth={setMonth}
-                cardNumber={cardNumber}
-                cvv2={cvv2}
-                month={month}
-                balance={balance}
-                formData={formData}
-                setFormData={setFormData}
-                name={name}
-              />
-            }
-          />
-          <Route
-            path='/transaction'
-            element={
-              <Transaction
-                formData={formData}
-                setFormData={setFormData}
-                transactionHistory={transactionHistory}
-                setTransactionHistory={setTransactionHistory}
-              />
-            }
-          />
-          <Route
-            path='/history'
-            element={<History transactionHistory={transactionHistory} />}
-          />
-        </Routes>
-        <Cards formData={formData} />
-    
+      <SideBar />
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <CardForm
+              setName={setName}
+              setBalance={setBalance}
+              setCardNumber={setCardNumber}
+              setCvv2={setCvv2}
+              setMonth={setMonth}
+              cardNumber={cardNumber}
+              cvv2={cvv2}
+              month={month}
+              balance={balance}
+              formData={formData}
+              setFormData={setFormData}
+              name={name}
+            />
+          }
+        />
+        <Route
+          path='/transaction'
+          element={
+            <Transaction
+              formData={formData}
+              setFormData={setFormData}
+              transactionHistory={transactionHistory}
+              setTransactionHistory={setTransactionHistory}
+            />
+          }
+        />
+        <Route
+          path='/history'
+          element={<History transactionHistory={transactionHistory} />}
+        />
+      </Routes>
+      <Cards formData={formData} />
     </div>
   );
 }
